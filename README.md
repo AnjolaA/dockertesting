@@ -7,5 +7,5 @@
     docker-compose -f docker-compose.yml -p <name> build
 
     docker-compose -f docker-compose.yml -p <name> up -d
-    
-    Where name is nay project name you want.
+  
+  Where name is nay project name you want.
