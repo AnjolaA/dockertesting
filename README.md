@@ -8,4 +8,4 @@
 
     docker-compose -f docker-compose.yml -p <name> up -d
   
-  Where name is nay project name you want.
+  Where name is any project name you want.
