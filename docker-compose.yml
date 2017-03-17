@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  app:
+   build: 
+    context: ./api
+    dockerfile: Dockerfile
+   ports:
+      - "3000:3000"
+
+  web:
+   build: 
+    context: ./web
+    dockerfile: Dockerfile
+   ports:
+      - "4000:4000"
+   links:
+      - app
+  test:
+   build:
+    context: ./tests
+    dockerfile: Dockerfile.test
+   links:
+      - app
+      - web
+   environment:
+    WAIT_HOSTS: app:3000

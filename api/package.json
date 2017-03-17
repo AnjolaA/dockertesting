@@ -1,0 +1,15 @@
+{
+  "name": "node_docker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mountebank-helper": "^1.2.1"
+  }
+}

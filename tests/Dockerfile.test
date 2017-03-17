@@ -1,0 +1,19 @@
+FROM node:boron
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY package.json /usr/src/app/
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app
+
+## Add the wait script to the image
+ADD https://raw.githubusercontent.com/ufoscout/docker-compose-wait/1.0.0/wait.sh /wait.sh
+RUN chmod +x /wait.sh
+
+#EXPOSE 3000
+CMD [ "npm", "test" ]

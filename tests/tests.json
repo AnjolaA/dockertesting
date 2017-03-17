@@ -1,0 +1,38 @@
+{
+	"variables": [],
+	"info": {
+		"name": "PostmanDocker",
+		"_postman_id": "178719f5-f975-3995-97a9-5192c0e2ac0b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://app:3000/hello",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"tests[\"Content-Type is present\"] = postman.getResponseHeader(\"Content-Type\");",
+							"",
+							"let jsonData = JSON.parse(responseBody);",
+							"tests[\"Hello value is Docker\"] = jsonData.hello === \"Docker\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "http://app:3000/hello",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
