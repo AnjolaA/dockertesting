@@ -1,0 +1,39 @@
+FROM ubuntu:16.04
+MAINTAINER anjola.awofisoye@sky.uk
+
+RUN apt-get update && \
+	apt-get install -y openjdk-8-jdk && \
+	apt-get install -y ant && \
+	apt-get clean;
+
+RUN apt-get update && \
+	apt-get install ca-certificates-java && \
+	apt-get clean && \
+	update-ca-certificates -f;
+
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/+
+RUN export JAVA_HOME && \
+    apt-get install -y curl && \
+	curl -sL https://deb.nodesource.com/setup_6.x | bash && \
+	apt-get install -y nodejs && \
+	apt-get install bzip2 && \
+    apt-get update && \
+	apt-get clean;
+
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+# Install app dependencies
+COPY . /usr/src/app/
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app
+
+## Add the wait script to the image
+ADD https://raw.githubusercontent.com/ufoscout/docker-compose-wait/1.0.0/wait.sh /wait.sh
+RUN chmod +x /wait.sh
+
+#EXPOSE 3000
+CMD [ "npm", "test" ]

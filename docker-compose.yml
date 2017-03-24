@@ -25,3 +25,12 @@ services:
       - web
    environment:
     WAIT_HOSTS: app:3000
+  integration:
+   build:
+    context: ./integration
+    dockerfile: Dockerfile.integration
+   links:
+      - app
+      - web
+   environment:
+    WAIT_HOSTS: app:4000
