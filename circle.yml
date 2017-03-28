@@ -12,8 +12,7 @@ test:
   override:
     - docker-compose -f docker-compose.yml build
     - docker-compose -f docker-compose.yml up     
-
-post:
-    #docker-compose stop was not stopping containers started with docker-compose run
-    # so using this hackity hack to force stop them all
-    - docker stop $(docker ps -a -q)
+  post:
+      #docker-compose stop was not stopping containers started with docker-compose run
+      # so using this hackity hack to force stop them all
+      - docker stop $(docker ps -a -q)
